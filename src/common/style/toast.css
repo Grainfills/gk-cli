@@ -1,0 +1,117 @@
+#toast {
+    position: fixed;
+    color: #fff;
+    top: 80%;
+    left: 0;
+    border: 1px solid #636363;
+    background-color: #000000;
+    opacity: .7;
+    padding: 20px 40px;
+    font-size: 28px;
+    border-radius: 5px;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 9999;
+}
+
+#toast.showing {
+    animation-name: opacity_animation;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+@keyframes opacity_animation {
+    0% {
+        opacity: .6;
+    }
+    10% {
+        opacity: .7;
+    }
+    20% {
+        opacity: .6;
+    }
+    30% {
+        opacity: .55;
+    }
+    40% {
+        opacity: .5;
+    }
+    50% {
+        opacity: .45;
+    }
+    60% {
+        opacity: .4;
+    }
+    70% {
+        opacity: .35;
+    }
+    80% {
+        opacity: .3;
+    }
+    90% {
+        opacity: .25;
+    }
+    100% {
+        opacity: .1;
+    }
+}
+
+.anim-opacity2 {
+    animation: 0.5s opacity2 0s 1;
+    -webkit-animation: 0.5s opacity2 0s 1;
+    -moz-animation: 0.5s opacity2 0s 1;
+}
+
+@keyframes opacity2 {
+    0% {
+        opacity: .3;
+    }
+    40% {
+        opacity: .4;
+    }
+    50% {
+        opacity: .5;
+    }
+    60% {
+        opacity: .6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes opacity2 {
+    0% {
+        opacity: .3;
+    }
+    40% {
+        opacity: .4;
+    }
+    50% {
+        opacity: .5;
+    }
+    60% {
+        opacity: .6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes opacity2 {
+    0% {
+        opacity: .3;
+    }
+    40% {
+        opacity: .4;
+    }
+    50% {
+        opacity: .5;
+    }
+    60% {
+        opacity: .6;
+    }
+    100% {
+        opacity: 1;
+    }
+}

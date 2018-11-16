@@ -1,0 +1,154 @@
+@charset "utf-8";
+* {
+    box-sizing: border-box;
+}
+
+*:before, *:after {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+*:not(input), *:not(textarea) {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+html {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    min-height: 100%;
+    /* 防止Safari字号自动调整*/
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    -webkit-overflow-scrolling: touch;
+    font-family: -apple-system-font, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    /*iOS上一直按住一个目标元素时，Safari会展示一个关于这个链接的callout信息,只对safair*/
+    -webkit-touch-callout: none;
+    /*字体平滑,w3c标砖已移除*/
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    min-width: 320px;
+    font-size: 16px;
+    margin: 0 auto;
+    padding: 0;
+    line-height: inherit;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    word-break: break-all;
+    user-select: none;
+}
+
+html, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    border: 0 none;
+    font-size: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    /* 在X5新内核Blink中，在排版页面的时候，会主动对字体进行放大，会检测页面中的主字体，当某一块字体在我们的判定规则中，认为字号较小，并且是页面中的主要字体，就会采取主动放大的操作。然而这不是我们想要的，可以采取给最大高度解决 */
+    max-height: 100000px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+span{
+    display: inline-block;
+}
+
+/*移动端placeholderline-hight向上偏移*/
+input {
+    line-height: normal
+}
+
+input, label, select {
+    vertical-align: middle;
+    font: 100% \5FAE\8F6F\96C5\9ED1
+}
+
+textarea {
+    overflow: auto;
+    resize: none;
+}
+
+a, input, textarea, select {
+    outline: 0;
+
+    border: none;
+}
+
+img {
+    border: none;
+    max-width: 100%;
+    -webkit-touch-callout: none;
+    border: 0;
+    vertical-align: middle;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+em, strong {
+    font-style: normal;
+}
+
+input, textarea {
+    -webkit-appearance: none;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    -webkit-touch-callout: none;
+}
+
+a:hover {
+    text-decoration: none;
+    outline: none;
+}
+
+a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+a:active, a:hover {
+    outline: 0
+}
+
+:focus {
+    outline: 0;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #b1b1b1;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    color: #b1b1b1;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+    color: #b1b1b1;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: #b1b1b1;
+}
