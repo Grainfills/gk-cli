@@ -1,17 +1,17 @@
 import './common/style/toast.css'
 import './common/style/reset.css'
 import 'swiper/dist/css/swiper.css'
-
+import './common/js/gk.api'
 // 基本
 import Vue from "vue"
 import VueRouter from "vue-router"
 import App from "./app.vue"
 import routerConfig from "./router"
-Vue.use(VueRouter)
-import Api from './api/http.js'
-Vue.prototype.$http= Api
+Vue.use(VueRouter);
+import http from './common/js/http'
+Vue.use(http);
 
-const router = new VueRouter(routerConfig)
+const router = new VueRouter(routerConfig);
 // 图片懒加载
 import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload);

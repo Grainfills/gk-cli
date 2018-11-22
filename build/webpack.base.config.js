@@ -3,22 +3,13 @@ let path = require('path');
 let config = require('./config');
 let webpack = require('webpack');
 
-
-function resolve(relPath) {
-    return  path.resolve(__dirname, relPath);
-}
-
 module.exports = {
     entry: './src/main.js',
     output: {
-        filename: 'js/[name].js'
+        filename: 'js/[name].[chunkhash].js'
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
-        alias: {
-            'GK': resolve('../src/common/js/gk.api.js'),
-            '$http': resolve('../src/api/http.js')
-        }
     },
     module: {
         rules: [{
@@ -50,15 +41,10 @@ module.exports = {
             }
         ]
     },
-    
     plugins: [
         new VueLoaderPlugin(),
-        new webpack.ProvidePlugin({
-            GK: 'GK',
-            http: '$http'
-        }),
-         new webpack.DefinePlugin({
+        new webpack.DefinePlugin({
             'process.env': config.prod.env
         }),
     ]
-}
+};

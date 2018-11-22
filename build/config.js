@@ -11,5 +11,6 @@ module.exports = {
         env: {
             NODE_ENV: '"production"',
             baseURL: '"https://miniapp.gorkor.com/"'
-        }    }
+        }
+    }
 };

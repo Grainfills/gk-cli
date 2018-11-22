@@ -1,13 +1,20 @@
-const merge = require("webpack-merge")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const baseWebpackConfig = require("./webpack.base.config")
-const path = require('path')
+const webpack = require("webpack");
+const merge = require("webpack-merge");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const baseWebpackConfig = require("./webpack.base.config");
+const path = require('path');
+
 module.exports = merge(baseWebpackConfig, {
     mode: 'production',
     output: {
         path: path.resolve(__dirname, '../dist'),
         publicPath: "/"
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
     },
     module: {
         rules: [{
@@ -26,11 +33,12 @@ module.exports = merge(baseWebpackConfig, {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'css/style.css'
+            filename: 'css/[name].[contenthash:8].css'
         }),
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: "index.html"
-        })
+        }),
+        new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(zh-cn)$/)
     ]
-})
+});

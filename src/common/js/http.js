@@ -52,52 +52,57 @@ function checkCode(res) {
     }
 }
 
-export default {
-    $http: function (type, url, data, successCallback, errorCallback) {
-        type = type || 'GET';
-        if (url.indexOf('?') !== -1) {
-            url = url + '&r=' + Math.random();
+function http(type, url, data, successCallback, errorCallback) {
+    type = type || 'GET';
+    if (url.indexOf('?') !== -1) {
+        url = url + '&r=' + Math.random();
+    } else {
+        url = url + '?r=' + Math.random();
+    }
+    let baseURL = process.env.baseURL;
+    if (data['_baseURL']) {
+        baseURL = data['_baseURL'];
+        data['_baseURL'] = null;
+    }
+    axios({
+        method: type,
+        baseURL: baseURL,
+        url,
+        data: qs.stringify(data),
+        timeout: 30000,
+        withCredentials: true,
+        headers: {
+            'Client-Type': 0,
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+    }).then(res => {
+        let code = res.status;
+        if (code === 200) {
+            checkStatus(res, successCallback, errorCallback);
         } else {
-            url = url + '?r=' + Math.random();
+            checkCode(res);
         }
-        let baseURL = process.env.baseURL;
-        if (data['_baseURL']) {
-            baseURL = data['_baseURL'];
-            data['_baseURL'] = null;
-        }
-        axios({
-            method: type,
-            baseURL: baseURL,
-            url,
-            data: qs.stringify(data),
-            timeout: 30000,
-            withCredentials: true,
-            headers: {
-                'Client-Type': 0,
-                'X-Requested-With': 'XMLHttpRequest',
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    }).catch(error => {
+        checkCode(error.response);
+    });
+}
+
+export default {
+    install: function (Vue, options) {
+        Vue.prototype.$http = {
+            get: function(url, data, successCallback, errorCallback) {
+                http('GET', url, data, successCallback, errorCallback);
+            },
+            post: function(url, data, successCallback, errorCallback) {
+                http('POST', url, data, successCallback, errorCallback);
+            },
+            put: function(url, data, successCallback, errorCallback) {
+                http('PUT', url, data, successCallback, errorCallback);
+            },
+            delete: function(url, data, successCallback, errorCallback) {
+                http('DELETE', url, data, successCallback, errorCallback);
             }
-        }).then(res => {
-            let code = res.status;
-            if (code === 200) {
-                checkStatus(res, successCallback, errorCallback);
-            } else {
-                checkCode(res);
-            }
-        }).catch(error => {
-            checkCode(error.response);
-        });
-    },
-    get(url, data, successCallback, errorCallback) {
-        this.$http('GET', url, data, successCallback, errorCallback);
-    },
-    post(url, data, successCallback, errorCallback) {
-        this.$http('POST', url, data, successCallback, errorCallback);
-    },
-    put(url, data, successCallback, errorCallback) {
-        this.$http('PUT', url, data, successCallback, errorCallback);
-    },
-    delete(url, data, successCallback, errorCallback) {
-        this.$http('DELETE', url, data, successCallback, errorCallback);
+        };
     }
 }

@@ -1,12 +1,12 @@
-const presets = [
-    ["@babel/env", {
-        targets: {
-            ie: "9"
-        },
-        modules: false
-    }]
-]
-
 module.exports = {
-    presets
-}
+    presets:  [
+        [
+            "@babel/env",
+            {
+                modules: false,
+                useBuiltIns: "usage"
+            },
+            "@babel/stage-0"
+        ]
+    ]
+};

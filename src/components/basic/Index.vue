@@ -113,7 +113,7 @@
             let self = this;
             // 标题
             self.$http.get("/api/magazine/article/3", {
-            
+
             }, result => {
                 self.likes = result.like;
                 self.liked = result.liked;
@@ -122,7 +122,7 @@
                 self.article = result.body;
             });
             self.$http.get('https://miniapp.gorkor.com/api/magazine/comment/3'  + '?sortType=0', {
-                
+
             }, result => {
                 self.commentList = self.commentList.concat(result);
                 self.commentLen = self.commentList.length
@@ -134,7 +134,7 @@
                 if (self.liked) {
                     return;
                 } else {
-                    self.$http.post("/api/prop/magazine/postLike", {
+                    self.$post("/api/prop/magazine/postLike", {
                         data: JSON.stringify({
                             articleId: self.articleId
                         })
@@ -163,7 +163,7 @@
                     rightBarName: "添加",
                     placeholder: "请输入留言内容"
                 }, function (resultData) {
-                    $http.post("/api/prop/magazine/postComment", {
+                    self.$post("/api/prop/magazine/postComment", {
                         data: JSON.stringify({
                             articleId: self.articleId,
                             comment: resultData,
