@@ -6,7 +6,7 @@ let webpack = require('webpack');
 module.exports = {
     entry: './src/main.js',
     output: {
-        filename: 'js/[name].[chunkhash].js'
+        filename: 'js/style.js'
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
