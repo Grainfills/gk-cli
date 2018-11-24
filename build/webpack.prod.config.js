@@ -1,16 +1,13 @@
-const webpack = require("webpack");
+let webpack = require('webpack');
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const baseWebpackConfig = require("./webpack.base.config");
-const path = require('path');
 
 module.exports = merge(baseWebpackConfig, {
     mode: 'production',
     output: {
-        path: path.resolve(__dirname, '../dist'),
         filename: 'js/[name].[chunkhash].js',
-        publicPath: "/"
     },
     optimization: {
         splitChunks: {
@@ -40,6 +37,7 @@ module.exports = merge(baseWebpackConfig, {
             filename: "index.html",
             template: "index.html"
         }),
+
         new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(zh-cn)$/)
     ]
 });

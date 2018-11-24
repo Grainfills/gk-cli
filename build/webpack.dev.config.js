@@ -4,9 +4,6 @@ const baseWebpackConfig = require("./webpack.base.config");
 
 module.exports = merge(baseWebpackConfig, {
     mode: 'development',
-    output: {
-        publicPath: "/"
-    },
     module: {
         rules: [{
             test: /\.css$/,

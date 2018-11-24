@@ -59,7 +59,7 @@ function http(type, url, data, successCallback, errorCallback) {
     } else {
         url = url + '?r=' + Math.random();
     }
-    let baseURL = process.env.baseURL;
+    let baseURL = SERVICE_URL;
     if (data['_baseURL']) {
         baseURL = data['_baseURL'];
         data['_baseURL'] = null;
